@@ -1,0 +1,8 @@
+{
+  "name": "ubuntu-texlive-ja",
+  "dockerComposeFile": "compose.yml",
+  "extensions": ["james-yu.latex-workshop"],
+  "service": "ubuntu-texlive-ja",
+  "workspaceFolder": "/workdir",
+  "shutdownAction": "stopCompose"
+}

@@ -1,0 +1,65 @@
+{
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "latex-workshop.intellisense.package.enabled": true,
+  "latex-workshop.view.pdf.internal.synctex.keybindin": "double-click",
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "editor.wordSeparators": "./\\()\"'-:,.;<>~!@#$%^&*|+=[]{}`~?　、。「」【】『』（）！？てにをはがのともへでや",
+  "latex-workshop.latex.tools": [
+      // latexmk を利用した uplatex によるビルドコマンド
+      {
+        "name": "Latexmk (upLaTeX)",
+        "command": "latexmk",
+        "args": [
+          "-outdir=./out", "-f", "-gg", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DOC%"
+        ]
+      },
+      // latexmk を利用した platex によるビルドコマンド
+      // 古い LaTeX のテンプレートを使いまわしている (ドキュメントクラスが jreport や jsreport ) 場合のため
+      {
+        "name": "Latexmk (pLaTeX)",
+        "command": "latexmk",
+        "args": [
+          "-f", "-gg", "-pv", "-latex='platex'", "-latexoption='-kanji=utf8 -no-guess-input-env'", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DOC%"
+        ]
+      },
+  ],
+
+  // latex-workshop.latex.recipes: Recipe の定義
+  "latex-workshop.latex.recipes": [
+      // LaTeX(upLaTeX) で書かれた文書のビルドレシピ
+      {
+        "name": "upLaTeX",
+        "tools": [
+          "Latexmk (upLaTeX)"
+        ]
+      },
+      // LaTeX(pLaTeX) で書かれた文書のビルドレシピ
+      {
+        "name": "pLaTeX",
+        "tools": [
+          "Latexmk (pLaTeX)"
+        ]
+      },
+  ],
+
+  // latex-workshop.latex.magic.args: マジックコメント付きの LaTeX ドキュメントをビルドする設定
+  // '%!TEX' で始まる行はマジックコメントと呼ばれ、LaTeX のビルド時にビルドプログラムに解釈され、
+  // プログラムの挙動を制御する事ができる。
+  // 参考リンク: https://blog.miz-ar.info/2016/11/magic-comments-in-tex/
+  "latex-workshop.latex.magic.args": [
+    "-f", "-gg", "-pv", "-synctex=1", "-interaction=nonstopmode", "-file-line-error", "%DOC%"
+  ],
+
+  "latex-workshop.latex.clean.fileTypes": [
+      "*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk", "*.synctex.gz", , "*.dvi"
+      // for Beamer files
+      "_minted*", "*.nav", "*.snm", "*.vrb"
+  ],
+
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoClean.run": "onFailed",
+  "latex-workshop.latex.outDir": "out",
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+}
